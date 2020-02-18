@@ -168,12 +168,8 @@ namespace project_1_back
               in the current process of the run idle blocked arrays
             */
 
-            for (int i = 0; i < noprocess; i++)
-            {
-                arrTotalBlocked[i] = arrBlocked.Cast<int>().Sum();
-            }
-
-            Console.WriteLine(arrTotalBlocked);
+            Console.WriteLine("Helloooo");
+            Console.WriteLine("{0}", string.Join(",", arrTotalBlocked));
 
         }
         public static void Print2DArray<T>(T[,] matrix)
