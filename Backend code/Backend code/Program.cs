@@ -155,7 +155,25 @@ namespace project_1_back
             Print2DArray(arrRun);
             Console.ReadLine();
 
-            // for(int i = 0; i < )
+            // I can just add all of the values in blocked and idle together. The run time should be the same, inside or outside of the loop
+
+            // If this is completely unnecessary, I can just remove it later. For now, I will keep on doing this to cover my bases.
+
+            int[] arrTotalBlocked = new int[noprocess];
+            int[] arrTotalRun = new int[noprocess];
+            int[] arrTotalIdle = new int[noprocess];
+
+            /*
+              So I am populating each element of the array with the sum of all of the elements 
+              in the current process of the run idle blocked arrays
+            */
+
+            for (int i = 0; i < noprocess; i++)
+            {
+                arrTotalBlocked[i] = arrBlocked.Cast<int>().Sum();
+            }
+
+            Console.WriteLine(arrTotalBlocked);
 
         }
         public static void Print2DArray<T>(T[,] matrix)
@@ -169,9 +187,5 @@ namespace project_1_back
                 Console.WriteLine();
             }
         }
-
-
-        //Testing helloooooooooooooooooooooooooooooooooo
-
     }
 }
