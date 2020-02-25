@@ -153,7 +153,7 @@ namespace project_1_back
             Print2DArray(arrIdle);
             Console.WriteLine("-------------Run:----------------");
             Print2DArray(arrRun);
-            Console.ReadLine();
+            
 
             // I can just add all of the values in blocked and idle together. The run time should be the same, inside or outside of the loop
 
@@ -168,9 +168,14 @@ namespace project_1_back
               in the current process of the run idle blocked arrays
             */
 
-            Console.WriteLine("Helloooo");
+
             Console.WriteLine("{0}", string.Join(",", arrTotalBlocked));
 
+
+
+
+            //Pause
+            Console.ReadLine();
         }
         public static void Print2DArray<T>(T[,] matrix)
         {
