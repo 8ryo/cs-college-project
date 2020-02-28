@@ -19,12 +19,12 @@ namespace Connecting_to_excel
             ws = wb.Worksheets[Sheet];
         }
 
-        public string readcell(int i, int j)
+        public string readcell(int j, int i)
         {
-            //i++;
-            //j++;
+            i++;
+            j++;
             if (ws.Cells[i, j].Value2 != null)
-                return ws.Cells[i, j].Value2;
+                return Convert.ToString(ws.Cells[i, j].Value2);
             else
                 return "";
 
@@ -41,11 +41,7 @@ namespace Connecting_to_excel
         {
             string path = @"C:\Users\Bryan\source\repos\test2.xlsx";
             Excel excel = new Excel(path, 1);
-
-
-            Console.WriteLine(excel.readcell(0,0));
             
-
             // Index starts at 0 here
             int firstx = 1;
             int firsty = 2;
@@ -53,22 +49,14 @@ namespace Connecting_to_excel
             int lastx = 3;
             int lasty = 5;
 
-            int[] processlen = new int[lasty - firsty + 2];
-
-            Console.WriteLine(excel.readcell(1, 1));
-
-            Console.WriteLine(excel.readcell(3, 2)); //change
+            string[] processlen = new string[lasty - firsty + 1]; 
 
             for (int i = 0; i < processlen.Length; i++)
             {
-                int x = Convert.ToInt32(excel.readcell(lastx, i+firsty));
-                Console.WriteLine(x);
+                processlen[i] = excel.readcell(lastx, i + firsty);
             }
 
-
-            Console.WriteLine("{0}", string.Join(", ", processlen));
-
-
+            Console.WriteLine("[{0}]", string.Join(", ", processlen));
 
             Console.ReadLine();
         }
