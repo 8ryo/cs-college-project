@@ -32,16 +32,45 @@ namespace Connecting_to_excel
     }
     class Program
     {
+        public static int ExcelColumnNameToNumber(string columnName)
+        {
+            if (string.IsNullOrEmpty(columnName)) throw new ArgumentNullException("columnName");
+
+            columnName = columnName.ToUpperInvariant();
+
+            int sum = 0;
+
+            for (int i = 0; i < columnName.Length; i++)
+            {
+                sum *= 26;
+                sum += (columnName[i] - 'A' + 1);
+            }
+
+            return sum;
+        }
         static double convert(string str)
         {
             double x = double.Parse(str);
             return x;
         }
+
+        static bool check(string co)
+        {
+
+        }
+
+
         static void Main(string[] args)
         {
-            string path = @"C:\Users\Bryan\source\repos\test2.xlsx";
+            string path = @"H:\CS Project\cs-college-project-master\test2.xlsx";
             Excel excel = new Excel(path, 1);
-            
+
+            string coordinate = "A1";
+
+        
+
+            Console.WriteLine(ExcelColumnNameToNumber(""));
+
             // Index starts at 0 here
             int firstx = 1;
             int firsty = 2;
@@ -49,12 +78,14 @@ namespace Connecting_to_excel
             int lastx = 3;
             int lasty = 5;
 
-            string[] processlen = new string[lasty - firsty + 1]; 
+            string[] strings = new string[lasty - firsty + 1]; 
 
-            for (int i = 0; i < processlen.Length; i++)
+            for (int i = 0; i < strings.Length; i++)
             {
-                processlen[i] = excel.readcell(lastx, i + firsty);
+                strings[i] = excel.readcell(lastx, i + firsty);
             }
+
+            double[] processlen = Array.ConvertAll(strings, double.Parse);
 
             Console.WriteLine("[{0}]", string.Join(", ", processlen));
 
