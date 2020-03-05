@@ -12,7 +12,7 @@ namespace Connecting_to_excel
     {
         _Application excel = new _Excel.Application();
         Workbook wb;
-        Worksheet ws;
+        public readonly Worksheet ws;
         public Excel(string path, int Sheet)
         {
             wb = excel.Workbooks.Open(path);
@@ -54,11 +54,10 @@ namespace Connecting_to_excel
             return x;
         }
 
-        static bool check(string co)
+        static void check(string co)
         {
 
         }
-
 
         static void Main(string[] args)
         {
@@ -88,6 +87,8 @@ namespace Connecting_to_excel
             double[] processlen = Array.ConvertAll(strings, double.Parse);
 
             Console.WriteLine("[{0}]", string.Join(", ", processlen));
+
+
 
             Console.ReadLine();
         }
