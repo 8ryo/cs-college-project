@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
 using _Excel = Microsoft.Office.Interop.Excel;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
-namespace Connecting_to_excel
+namespace Project_1
 {
     class Excel
     {
@@ -24,14 +25,14 @@ namespace Connecting_to_excel
         {
             y++;
             x++;
-            if (ws.Cells[y, x].Value2 != null) return Convert.ToString(ws.Cells[y, x].Value2); 
+            if (ws.Cells[y, x].Value2 != null) return Convert.ToString(ws.Cells[y, x].Value2);
 
             //Note, it is "y and x" rather than "x and y" because this is how excel interprets the integers. Really odd...
 
             else return "";
         }
     }
-    class Program
+    public static class connect
     {
         static int ExcelColumnNameToNumber(string columnName)
         {
@@ -55,14 +56,14 @@ namespace Connecting_to_excel
             bool alphafound = false;
             bool numfound = false;
             bool success = true;
-            
+
             foreach (char c in input)
             {
                 if (Regex.IsMatch(c.ToString(), @"^[a-zA-Z]+$") == true && alphafound == false) //(c.ToString(), @"\d")
                 {
                     alphafound = true;
                 }
-                else if (c == Convert.ToChar(0) && numfound == false)
+                else if (c == Convert.ToChar(0) && numfound == false && alphafound == true)
                 {
                     success = false;
                 }
@@ -70,7 +71,7 @@ namespace Connecting_to_excel
                 {
                     numfound = true;
                 }
-                else if ((char.IsDigit(c) == true && alphafound == false) || (Regex.IsMatch(c.ToString(), @"^[a-zA-Z]+$") == true && numfound == true) || 
+                else if ((char.IsDigit(c) == true && alphafound == false) || (Regex.IsMatch(c.ToString(), @"^[a-zA-Z]+$") == true && numfound == true) ||
                      (c == Convert.ToChar(" ")))
                 {
                     success = false;
@@ -81,8 +82,16 @@ namespace Connecting_to_excel
             {
                 return true;
             }
+            else if (alphafound == true && numfound == false || alphafound == false && numfound == true)
+            {
+                MessageBox.Show("Error: Coordinate does not contain both horizontal and vertical coordinate of cell.");
+                return false;
+            }
             else
             {
+                MessageBox.Show("Error, invalid cell coordinates. Please input the coordinate in the form 'XY' (where X is " +
+                    "the horizontal coordinate [i.e. the letter] and Y is the vertical coordinate [i.e. the number]. E.g. 'A3', 'Z4', 'AE14'." +
+                    "[Y > 0][No spaces]. ");
                 return false;
             }
         }
@@ -102,26 +111,20 @@ namespace Connecting_to_excel
         }
 
 
-
-        static void Main(string[] args) 
+        public static double[] getval(string input1, string input2, string path) //First cell and last cell of the range, respectively.
         {
-            // college file path = H:\CS Project\test.xlsx
-            // Home file path = 
-            string path = @"H:\CS Project\test.xlsx";
             Excel excel = new Excel(path, 1);
-
-            string input1 = "B3"; string input2 = "D6"; //First cell and last cell of the range, respectively.
 
             if (validatecell(input1) && validatecell(input2))
             {
                 int[] firstcell = splitandconvert(input1);
                 int[] lastcell = splitandconvert(input2);
-                if(lastcell[0] > firstcell[0] && lastcell[1] > firstcell[1])
+                if (lastcell[0] > firstcell[0] && lastcell[1] > firstcell[1])
                 {
-                    int x1 = firstcell[0]-1;
-                    int y1 = firstcell[1]-1;
-                    int x2 = lastcell[0]-1;
-                    int y2 = lastcell[1]-1;
+                    int x1 = firstcell[0] - 1;
+                    int y1 = firstcell[1] - 1;
+                    int x2 = lastcell[0] - 1;
+                    int y2 = lastcell[1] - 1;
                     string[] strings = new string[y2 - y1 + 1];
 
                     for (int i = 0; i < strings.Length; i++)
@@ -132,33 +135,26 @@ namespace Connecting_to_excel
                     try
                     {
                         double[] processlen = Array.ConvertAll(strings, double.Parse);
-                        Console.WriteLine("[{0}]", string.Join(", ", processlen));
+                        return processlen;
                     }
                     catch
                     {
-                        Console.WriteLine("Error: Not all of the values in the last column are numerical. Make sure " +
+                        MessageBox.Show("Error: Not all of the values in the last column are numerical. Make sure " +
                             "all of the right column values are numerical and try again.");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Range is invalid, please make sure that the last cell is below and to the right of the first cell.");
+                    MessageBox.Show("Range is invalid, please make sure that the last cell is below and to the right of the first cell.");
                 }
             }
             else
             {
-                Console.WriteLine("Error, invalid cell coordinates. Please input the coordinate in the form 'XY' (where X is " +
-                    "the horizontal coordinate [i.e. the letter] and Y is the vertical coordinate [i.e. the number]. E.g. 'A3', 'Z4', 'AE14'." +
-                    "[Y > 0][No spaces]. ");
+                
             }
 
-            
-
-            Console.WriteLine("-----------------------Tests-------------------------");
-
-
-
-            Console.ReadLine();
+            double[] error = { -1 };
+            return error;
         }
     }
 }

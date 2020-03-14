@@ -35,9 +35,18 @@ namespace Project_1
 
         private void BtnNext1_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Form2 frm2 = new Form2();
-            frm2.ShowDialog();
+            if(txtPath.Text == "")
+            {
+                MessageBox.Show("Please choose a file!");
+            }
+            else
+            {
+                this.Hide();
+                Form2 frm2 = new Form2();
+                frm2.ShowDialog();
+            }
+
+            
         }
 
         private void BtnBrowse_Click_1(object sender, EventArgs e)
@@ -67,7 +76,7 @@ namespace Project_1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            global.preload();
+            //global.preload();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

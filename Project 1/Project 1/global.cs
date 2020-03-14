@@ -9,6 +9,8 @@ namespace Project_1
     public static class global
     {
         public static string filepath;
+        public static double[] arrProcesslen;
+        public static int cycles;
 
         public static void preload()
         {

@@ -32,9 +32,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtCycles = new System.Windows.Forms.TextBox();
+            this.txtFirstCell = new System.Windows.Forms.TextBox();
+            this.txtLastCell = new System.Windows.Forms.TextBox();
             this.btnNext2 = new System.Windows.Forms.Button();
             this.btnBack2 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -74,29 +74,29 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Last Cell:";
             // 
-            // textBox1
+            // txtCycles
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(108, 78);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(143, 24);
-            this.textBox1.TabIndex = 3;
+            this.txtCycles.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCycles.Location = new System.Drawing.Point(108, 78);
+            this.txtCycles.Name = "txtCycles";
+            this.txtCycles.Size = new System.Drawing.Size(143, 24);
+            this.txtCycles.TabIndex = 3;
             // 
-            // textBox2
+            // txtFirstCell
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(108, 166);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(143, 24);
-            this.textBox2.TabIndex = 4;
+            this.txtFirstCell.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFirstCell.Location = new System.Drawing.Point(108, 166);
+            this.txtFirstCell.Name = "txtFirstCell";
+            this.txtFirstCell.Size = new System.Drawing.Size(143, 24);
+            this.txtFirstCell.TabIndex = 4;
             // 
-            // textBox3
+            // txtLastCell
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(108, 249);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(143, 24);
-            this.textBox3.TabIndex = 5;
+            this.txtLastCell.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLastCell.Location = new System.Drawing.Point(108, 249);
+            this.txtLastCell.Name = "txtLastCell";
+            this.txtLastCell.Size = new System.Drawing.Size(143, 24);
+            this.txtLastCell.TabIndex = 5;
             // 
             // btnNext2
             // 
@@ -151,9 +151,9 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnBack2);
             this.Controls.Add(this.btnNext2);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtLastCell);
+            this.Controls.Add(this.txtFirstCell);
+            this.Controls.Add(this.txtCycles);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -175,9 +175,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtCycles;
+        private System.Windows.Forms.TextBox txtFirstCell;
+        private System.Windows.Forms.TextBox txtLastCell;
         private System.Windows.Forms.Button btnNext2;
         private System.Windows.Forms.Button btnBack2;
         private System.Windows.Forms.PictureBox pictureBox1;

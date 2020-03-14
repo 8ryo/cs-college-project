@@ -4,18 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace project_1_back
+namespace Project_1
 {
-    class Program
+    public static class calculate
     {
-        static void Main(string[] args)
+        public static void rib(double[] arrProcesslen, int cycles)
         {
-            int[] arrProcesslen = new int[] { 4, 6, 3 };
-            int cycles = 4;
-            int pointer = 0;
-            int[,] arrRun = new int[arrProcesslen.Length, cycles];
-            int[,] arrIdle = new int[arrProcesslen.Length, cycles];
-            int[,] arrBlocked = new int[arrProcesslen.Length, cycles];
+            double pointer = 0;
+            double[,] arrRun = new double[arrProcesslen.Length, cycles];
+            double[,] arrIdle = new double[arrProcesslen.Length, cycles];
+            double[,] arrBlocked = new double[arrProcesslen.Length, cycles];
             int noprocess = arrProcesslen.Length;
 
             //------------------------ First Cycle ---------------------------------
@@ -146,37 +144,15 @@ namespace project_1_back
                     }
                 }
             }
+            //
+            //
+            double[] arrTotalBlocked = new double[noprocess];
+            double[] arrTotalRun = new double[noprocess];
+            double[] arrTotalIdle = new double[noprocess];
 
-            /*
-            Console.WriteLine("-------------Blocked:----------------");
-            Print2DArray(arrBlocked);
-            Console.WriteLine("-------------Idle:----------------");
-            Print2DArray(arrIdle);
-            Console.WriteLine("-------------Run:----------------");
-            Print2DArray(arrRun);
-            */
-
-            //----------------------------------------Summing all of the arrays together--------------------------------------------
-
-            // I can just add all of the values in blocked and idle together. The run time should be the same, inside or outside of the loop
-
-            // If this is completely unnecessary, I can just remove it later. For now, I will keep on doing this to cover my bases.
-
-            int[] arrTotalBlocked = new int[noprocess];
-            int[] arrTotalRun = new int[noprocess];
-            int[] arrTotalIdle = new int[noprocess];
-
-            /*
-              So I am populating each element of the array with the sum of all of the elements 
-              in the current process of the run idle blocked arrays
-            */
-
-
-            Console.WriteLine("\n-----------Totals-----------");
-
-            for(int a = 0; a < noprocess; a++)
+            for (int a = 0; a < noprocess; a++)
             {
-                for(int i = 0; i < cycles; i++)
+                for (int i = 0; i < cycles; i++)
                 {
                     arrTotalBlocked[a] += arrBlocked[a, i];
                     arrTotalRun[a] += arrRun[a, i];
@@ -184,39 +160,13 @@ namespace project_1_back
                 }
             }
 
-            /*
-            Console.WriteLine("[{0}] \n[{1}] \n[{2}]", string.Join(", ", arrTotalBlocked), string.Join(", ", arrTotalRun) ,string.Join(", ", arrTotalIdle));
-
-            
-            Console.WriteLine("\n-----------Output Rate-----------");
-            */
             int timemult = 1;
             int outmult = 1;
 
-            double outputFrequency = ((double)arrRun[noprocess, cycles]*timemult) / (cycles*outmult);
+            double outputFrequency = ((double)arrRun[noprocess, cycles] * timemult) / (cycles * outmult);
             double outputRate = (cycles * outmult) / ((double)arrRun[noprocess, cycles] * timemult);
 
-
-            /*
-            Console.WriteLine("{0}", outputRate);
-
-            Console.WriteLine("\n-----------Output Frequency-----------");
-            Console.WriteLine("{0}", outputFrequency);
-            */
-
-            //Pause
-            Console.ReadLine();
         }
-        public static void Print2DArray<T>(T[,] matrix)
-        {
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    Console.Write(matrix[i, j] + "\t");
-                }
-                Console.WriteLine();
-            }
-        }
+
     }
 }
