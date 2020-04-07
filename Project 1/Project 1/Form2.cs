@@ -32,23 +32,22 @@ namespace Project_1
 
         private void btnNext2_Click(object sender, EventArgs e)
         {
-            double[] processlen = connect.getval(txtFirstCell.Text, txtLastCell.Text, global.filepath);
-
             if (Convert.ToString(txtFirstCell.Text) == "" || Convert.ToString(txtLastCell) == "" || Convert.ToString(txtCycles) == "")
             {
                 MessageBox.Show("Error: Not all fields have a valid entry.");
             }
-            else if (processlen[0] != -1)
-            {
-
-            }
             else
             {
-                global.arrProcesslen = processlen;
-                global.cycles = Convert.ToInt32(txtCycles.Text);
-                this.Hide();
-                Form3 frm3 = new Form3();
-                frm3.ShowDialog();
+                double[] processlen = connect.getval(txtFirstCell.Text, txtLastCell.Text, global.filepath);
+                if(processlen[0] != -1)
+                {
+                    global.arrProcesslen = processlen;
+                    global.cycles = Convert.ToInt32(txtCycles.Text);
+                    this.Hide();
+                    Form3 frm3 = new Form3();
+                    frm3.ShowDialog();
+                }
+                
             }
         }
 
